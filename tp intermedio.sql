@@ -152,13 +152,10 @@ FROM mascotas m
 INNER JOIN duenos ON m.id_dueno = duenos.id
 
 /*Ejercicio 10 – JOIN con historial clínico*/
-
-SELECT m.nombre AS nombre_mascota, m.especie, 
-CONCAT(d.nombre, ' ', d.apellido) AS nombre_completo_dueño,
-v.nombre AS nombre_veterinario,
-h.fecha_registro,
-h.descripcion
-  FROM historial_clinico h 
-  INNER JOIN mascotas m ON m.id = h.id_mascota 
-  INNER JOIN duenos d ON d.id = m.id_dueno 
-  INNER JOIN veterinarios v ON v.id = h.id_veterinario;
+SELECT m.nombre AS nombre_mascota, m.especie, CONCAT(d.nombre, ' ', d.apellido) 
+AS nombre_completo_dueño,v.nombre AS nombre_veterinario, h.fecha_registro, h.descripcion
+FROM historial_clinico h
+INNER JOIN mascotas m ON m.id = h.id_mascota
+INNER JOIN duenos d ON d.id = m.id_dueno
+INNER JOIN veterinarios v ON v.id = h.id_veterinario
+ORDER BY h.fecha_registro DESC;
